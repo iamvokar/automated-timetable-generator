@@ -1,0 +1,80 @@
+
+.logo{
+	margin: 0px;
+	margin-left: 20px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 30px;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+
+/*left sidebar*/
+
+.sidenav {
+  height: 100%;
+  width: 230px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #293654;
+  overflow: hidden;
+  transition: 0.5s;
+  padding-top: 30px;
+  font-size: 2rem;
+}
+.sidenav li
+ {
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 400;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+
+}
+
+.sidenav li:hover {
+  color: #f1f1f1;
+  background-color:#1b203d;
+  border-radius: 10px 0 0px 10px;
+}
+
+.active
+{
+    background-color:#1b203d;
+}
+
+
+.header
+{
+    position: absolute;
+    left: 11.1%;
+    right: -0.47%;
+    top: -0.28%;
+    bottom: 90.65%;
+    background-color:#293654;
+        
+}
+
+.header h2{
+position: absolute;
+left: 40.41%;
+right: 39.93%;
+
+
+
+color:#f1f1f1;
+
+font-family: Segoe UI;
+font-weight: normal;
+font-size: 45px;
+line-height: 49px;
+
+}
+
+.new-line {
+  white-space: pre-line;
+}
