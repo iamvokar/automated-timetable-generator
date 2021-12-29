@@ -4,16 +4,14 @@ import Main from './components/Main.js';
 import Login from './components/Login.js';
 import Sign from './components/Sign.js';
 import Register from './components/Register.js';
-import Course from './Course.js';
+import Admin from './Admin.js';
 function App() {
   return (
     <div >
-       {/* <SideBar/>
-       <Main/> */}
        {/* <Login/> */}
        {/* <Sign/> */}
        {/* <Register/> */}
-       <Course/>
+       <Admin/>
     </div>
   );
 }
