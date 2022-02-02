@@ -1,0 +1,101 @@
+.heading{
+  border: 3px solid #707070;
+  border-radius: 15px;
+  max-width: 520px;
+  height: 80px;
+ 
+  margin: 120px auto;
+  margin-bottom: 0%;
+  
+}
+.heading h3{
+    padding-top: 10px;
+    margin-top: 10px;
+    font-size: 25px;
+    font-weight: 600px;
+}
+
+.login {
+    background: #eee;
+}
+
+
+
+.login_section {
+    max-width: 520px;
+    background: #fff;
+    min-height: 120px;
+    width: 100%;
+    box-shadow: 0px 0 10px -4px #000;
+    margin: 0px;
+    padding: 0;
+    border-radius: 15px;
+    overflow: hidden;
+    margin: 20px auto;
+}
+
+.logo_login {
+    background:#00ABAA;
+    padding: 15px 0;
+    background-position: center center;
+    position: relative;
+}
+
+
+
+.logo_login div {
+    position: relative;
+    z-index: 1;
+}
+
+.login_form {
+    padding: 50px 50px;   
+    width: 100%;
+}
+
+
+
+.login_form form .field {
+    display: flex;
+    margin: 0;
+    margin: 0 0 20px;
+}
+
+.login_form form .field input {
+   
+    width: 395px;
+    padding: 15px;
+    line-height: normal;
+    font-weight: 500;
+    border-radius: 15px;
+    outline: none;
+
+
+}
+.btn
+{
+    background-color:#00ABAA;
+    color:#ffff;
+    font-size: 20px;
+}
+
+.forgot {
+    float: left;
+    margin: 11px 0;
+    position: relative;
+    left: 0;
+    color: #ff5722;
+}
+
+.showpass{
+    
+    font-size: 20px;
+    padding: 12px;
+    margin-left: -2.6rem;
+    outline: none;
+    background-color: transparent;
+    border-radius: 0 15px 15px 0;
+    border: 0;
+    cursor: pointer;
+    
+}

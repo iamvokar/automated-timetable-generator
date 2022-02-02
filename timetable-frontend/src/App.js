@@ -1,17 +1,23 @@
-
-import SideBar from './components/SideBar.js';
-import Main from './components/Main.js';
-import Login from './components/Login.js';
-import Sign from './components/Sign.js';
-import Register from './components/Register.js';
+import Login from './auth/Login.js';
+import Sign from './auth/Sign.js';
+import Register from './auth/Register.js';
 import Admin from './Admin.js';
+import Faculty from './Faculty';
+
+import {BrowserRouter as Router,Link, Switch,Route } from 'react-router-dom';
+
 function App() {
   return (
     <div >
-       {/* <Login/> */}
-       {/* <Sign/> */}
-       {/* <Register/> */}
-       <Admin/>
+      <Router >
+          <Switch>
+              <Route exact path="/" component={Sign}></Route>
+              <Route exact path="/login" component={Login}></Route>
+              <Route exact path="/register" component={Register}></Route>
+              <Route exact path="/admin" component={Admin}></Route>
+              <Route exact path="/faculty" component={Faculty}></Route>
+          </Switch>
+          </Router> 
     </div>
   );
 }

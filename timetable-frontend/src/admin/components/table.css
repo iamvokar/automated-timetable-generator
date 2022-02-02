@@ -1,0 +1,169 @@
+.page_title {
+    background: #fff;
+    margin-top: 90px;
+    margin-left: 10%;
+    margin-bottom: 30px;
+    width:100%;
+    padding: 25px 35px 22px 38px;
+    box-shadow: 25px 0 12px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.page_title h2 {
+    font-size: 25px;
+    font-weight: 600;
+    padding-left: 15px;
+    color: #15283c;
+}
+
+.add
+{
+    margin-left: 75%;
+    margin-right: 15px;
+}
+.adds
+{
+    margin-left:115px;
+    width:90%;
+}
+
+/*------------------------------------------------------------------
+    7. Table style
+-------------------------------------------------------------------*/
+table {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    margin-left: -60px;
+  }
+  
+  table td,
+  table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  table tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  table tr:hover {
+    background-color: #ddd;
+  }
+  
+  table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #04aa6d;
+    color: white;
+  }
+  .white_shd1{
+    background: rgb(255, 255, 255);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    border:1px solid black;
+    border-radius: 5px;
+    margin:80px 30px 0px 420px;
+    width:65%;
+    padding: 15px;
+}
+.white_shd2 {
+    background: rgb(255, 255, 255);
+    border-radius: 5px;
+    margin:0 auto;
+    width:100%;
+}
+
+  .head {
+      background:#00ABAA;
+  }
+
+  .login {
+    background: #eee;
+}
+
+
+
+.login_section {
+    max-width: 520px;
+    background: #fff;
+    min-height: 120px;
+    width: 100%;
+    box-shadow: 0px 0 10px -4px #000;
+    margin: 0px;
+    padding: 0;
+    border-radius: 15px;
+    overflow: hidden;
+    margin: 20px auto;
+}
+
+.logo_login {
+    background:#00ABAA;
+    padding: 15px 0;
+    background-position: center center;
+    position: relative;
+}
+
+
+
+.logo_login div {
+    position: relative;
+    z-index: 1;
+}
+
+.login_form {
+    padding: 50px 50px;   
+    width: 100%;
+}
+
+
+
+.login_form form .field {
+    display: flex;
+    margin: 0;
+    margin: 0 0 20px;
+}
+
+.login_form form .field input {
+   
+    width: 490px;
+    margin: 0 auto;
+    padding: 15px;
+    line-height: normal;
+    font-weight: 500;
+    border-radius: 15px;
+    outline: none;
+
+
+}
+.login_form form .login_radio
+{
+    width: 490px;
+    margin: 0 auto;
+    
+}
+.login_form form .title
+{
+    padding: 15px;
+    margin-bottom: 15px;
+    font-size: 20px;
+    font-weight: 500;
+}
+.btn
+{
+    background-color:#00ABAA;
+    color:#ffff;
+
+}
+
+.forgot {
+    float: left;
+    margin: 11px 0;
+    position: relative;
+    left: 0;
+    color: #ff5722;
+}
+
+  
+  
+ 
