@@ -3,7 +3,8 @@ import Sign from './auth/Sign.js';
 import Register from './auth/Register.js';
 import Admin from './Admin.js';
 import Faculty from './Faculty';
-
+import {useHistory} from 'react-router-dom'
+import {useEffect} from 'react'
 import {BrowserRouter as Router,Link, Switch,Route } from 'react-router-dom';
 
 function App() {

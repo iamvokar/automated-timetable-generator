@@ -4,19 +4,22 @@ import {FaEye,FaEyeSlash} from 'react-icons/fa'
 import {Link } from 'react-router-dom'
 import {useState,useEffect} from 'react'
 import {useHistory} from 'react-router-dom'
+import swal from 'sweetalert';
+
 
 function Register() {
-
    useEffect(()=>{
       if(localStorage.getItem('user_info'))
       {
          history.push('/')
       }
    },[])
+
    const [username,setusername] = useState("")
    const [firstname,setfirstname] = useState("")
    const [lastname,setlastname] = useState("")
    const [email,setemail] = useState("")
+   const [role,setrole] = useState(0)
    const [password,setpassword] = useState("")
    const history = useHistory();
 
@@ -33,14 +36,29 @@ function Register() {
       formData.append("FirstName",firstname)
       formData.append("LastName",lastname)
       formData.append("Email",email)
+      formData.append("role",role)
       formData.append("Password",password)
       let result = await fetch("http://127.0.0.1:8000/api/register",{
         method:'POST',
         body:formData
       });
+      if(result.status == 200)
+      {
       let user = {username,firstname,lastname,email}
       localStorage.setItem("user_info",JSON.stringify(user));
       history.push("/");
+      }
+      else {
+         console.warn(result.error)
+         swal({
+           title: "Ops!",
+           text: "something went wrong!",
+           icon: "warning",
+           button: "ok!",
+         });
+       }
+       
+      
    }
 
    
@@ -68,6 +86,9 @@ function Register() {
                                  value={username} onChange={(e)=>setusername(e.target.value)} required
                               />
                            </div>
+                              <input type="hidden" name="role" 
+                                 value={role}  required
+                              />
                            <div class="field">
                               <input type="text" name="firstname" placeholder="First Name" 
                                  value={firstname} onChange={(e)=>setfirstname(e.target.value)} required
@@ -83,6 +104,7 @@ function Register() {
                               <input type="email" name="email" placeholder="Email" 
                                  value={email} onChange={(e)=>setemail(e.target.value)} required
                               />
+                              
                            </div>
                            <div class="field">
                               <input type={state?"text":"password"} name="password" placeholder="Password" 

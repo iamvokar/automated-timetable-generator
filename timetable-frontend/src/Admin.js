@@ -6,6 +6,7 @@ import FacultySection from './admin/components/FacultySection'
 import ClassSection from './admin/components/ClassSection'
 import ConstrainSection from './admin/components/ConstrainSection'
 import TimetableSection from './admin/components/TimetableSection'
+import AdminSection from './admin/components/AdminSection'
 import Main from './admin/components/Main'
 import {useHistory} from 'react-router-dom'
 import {useEffect} from 'react'
@@ -14,9 +15,9 @@ function Admin() {
     
   const history = useHistory();
   useEffect(()=> {
-    if (!(localStorage.getItem('user_login'))&&!(localStorage.getItem('admin_login')))
+    if (!(localStorage.getItem('admin_login')))
     {
-       history.push("/")
+       history.push("/")   
     }
     else
     {
@@ -35,6 +36,7 @@ function Admin() {
                   <Route exact path="/class" component={ClassSection}></Route>
                   <Route exact path="/constrain" component={ConstrainSection}></Route>
                   <Route exact path="/timetable" component={TimetableSection}></Route>
+                  <Route exact path="/profile" component={AdminSection}></Route>
               </Switch>
       </Router>
       

@@ -1,14 +1,15 @@
 import React from 'react'
 import './Main.css';
 import img from '../assets/image/mca.png'
-import Cdata from '../assets/array/Cdata'
+import Cdata,{Cvalue} from '../assets/array/Cdata'
 import Cdata2 from '../assets/array/Cdata2'
 import Cdata3 from '../assets/array/Cdata3'
 import {useState,useEffect} from 'react'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import SideBar from './SideBar';
+
 function card1(val) {
+  
     return (
         <div className={val.cols}>
             <div className={val.boxs}>
@@ -62,16 +63,16 @@ function card3(val) {
     );
 }
 function Main() {
-     useEffect(()=>{
-       toast.success("welcome to admin dasboard");
-   },[])
+    useEffect(()=>{
+        toast.success("welcome to faculty dashboard");
+    },[])
     return (
         <>
             {/* main component start */}
             <section id="data" class="data section-bg">
                 <div className="container " id="main">
                     <div className="row d-flex justify-content-center">
-                        {Cdata.map(card1)}
+                        {Cdata.map(card2)}
                     </div>
                     <div className="row d-flex pt-4  justify-content-center ">
                         {Cdata2.map(card2)}
@@ -95,7 +96,6 @@ function Main() {
             <ToastContainer />
         </>
     )
-    
 }
 
 export default Main

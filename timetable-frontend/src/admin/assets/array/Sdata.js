@@ -1,5 +1,6 @@
 const Sdata=[
     {
+        id:1,
         lis:"mt-5  py-2",
         icon:"fa fa-home text-white mx-3",
         link:"/admin",
@@ -7,6 +8,7 @@ const Sdata=[
         name:"DASHBOARD"
     },
     {
+        id:2,
         lis:"my-3 py-2",
         icon:"fa fa-home text-white mx-3",
         link:"/course",
@@ -14,6 +16,7 @@ const Sdata=[
         name:"COURSE"
     },
     {
+        id:3,
         lis:"my-3 py-2",
         icon:"fa  fa-book  text-white mx-3",
         link:"/subject",
@@ -21,6 +24,7 @@ const Sdata=[
         name:"SUBJECT"
     },
     {
+        id:4,
         lis:"my-3 py-2",
         icon:"fa  fa-users text-white mx-3",
         link:"/faculty",
@@ -28,6 +32,7 @@ const Sdata=[
         name:"FACULTY"
     },
     {
+        id:5,
         lis:"my-3 py-2",
         icon:"fa fa-university text-white mx-3",
         link:"/class",
@@ -35,6 +40,7 @@ const Sdata=[
         name:"CLASS ROOM"
     },
     {
+        id:6,
         lis:"my-3 py-2",
         icon:"fa fa-pencil text-white mx-3",
         link:"/constrain",
@@ -42,6 +48,7 @@ const Sdata=[
         name:"CONSTRAINS"
     },
     {
+        id:7,
         lis:"py-2 mb-5",
         icon:"fa fa-table text-white mx-3",
         link:"/timetable",
@@ -49,9 +56,10 @@ const Sdata=[
         name:"TIME TABLE"
     },
     {
+        id:8,
         lis:"mt-5 py-2",
         icon:"fa fa-briefcase text-white mx-3",
-        link:"/abc",
+        link:"/profile",
         slink: "text-white text-decoration-none",
         name:"ADMIN"
     }

@@ -1,5 +1,6 @@
 import React from 'react'
 import {Link,useHistory} from 'react-router-dom';
+import {useEffect,useState} from 'react'
 import './SideBar.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Sdata from '../assets/array/Sdata'
@@ -19,10 +20,19 @@ function sidelink(val)
 function SideBar() {
 
   const history = useHistory();
-  function logout() {
-    localStorage.clear();
-    history.push("/");
-  }
+  
+
+ function logout()
+ {
+  localStorage.clear();
+  history.push("/"); 
+  console.warn("logout")
+ }
+      
+  
+
+
+  
   
     return (
      <>
@@ -33,7 +43,7 @@ function SideBar() {
        {Sdata.map(sidelink)}
        <li className="my-3 py-2">
        <i className="fa fa-cog text-white mx-3" aria-hidden="true"></i>
-       <Link onClick={logout} className="text-white text-decoration-none">LOGOUT</Link>
+       <Link to="" onClick={logout} className="text-white text-decoration-none">LOGOUT</Link>
    </li>
   </ul>
 </nav>

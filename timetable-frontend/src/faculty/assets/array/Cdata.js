@@ -1,10 +1,12 @@
-const Cdata=[
+
+
+ const Cdata=[
     {
         id:1,
         cols:"col-lg-3",
         boxs:"box d-flex align-items-center",
         icon:"fa fa-4x fa-graduation-cap text-danger",
-        value: "2",
+        value:"4" ,
         name:"Course"
     },
     {
@@ -24,4 +26,6 @@ const Cdata=[
         name:"Faculty"
     }
 ]
+    
+
 export default Cdata

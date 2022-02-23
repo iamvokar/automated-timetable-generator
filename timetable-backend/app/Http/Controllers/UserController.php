@@ -9,13 +9,18 @@ use App\Models\User;
 class UserController extends Controller
 {
     function register(Request $req){
+        
         $user = new User;
         $user->UserName=$req->input("UserName");
         $user->FirstName=$req->input("FirstName");
         $user->LastName=$req->input("LastName");
+        $user->role=$req->input("role");
         $user->Email=$req->input("Email");
         $user->Password=Hash::make($req->input("Password"));
-        $user->save();
+        $user->save(); 
+       
+
+      
     }
 
     function login(Request $req){
@@ -28,8 +33,14 @@ class UserController extends Controller
         }
         else {
             return response()->json([
-            'response' => "LoggedIn"
+            'response' => "LoggedIn",
+            'role' => $user->role,
+            'id' => $user->ID
             ], 200);
         }
+    }
+
+    function userinfo($id) {
+        return User::find($id);
     }
 }

@@ -165,5 +165,17 @@ table {
 }
 
   
-  
+.profile_img img{
+    float: left;
+    margin-right: 20px;
+    width:50%;
+    border-radius: 100px;
+    padding-bottom: 10px;
+}
+.admin_title{
+    padding-top: 120px; 
+    padding-left: 70px; 
+    font-weight: 600; 
+    line-height: 1.5;
+}
  

@@ -3,18 +3,20 @@ import {FaEyeSlash,FaEye} from 'react-icons/fa'
 import "./Login.css"
 import {useHistory} from 'react-router-dom'
 import {useState,useEffect} from 'react'
+import {Link } from 'react-router-dom'
+import swal from 'sweetalert';
 
 function Login() {
    const history = useHistory();
    useEffect(()=> {
-      if (localStorage.getItem('admin_login')||localStorage.getItem('user_login'))
+      if (localStorage.getItem('admin_login'))
       {
          history.push("/admin")
       }
    }, [])
    const [username,setusername] = useState("")
    const [password,setpassword] = useState("")
-
+   const [isValid, setIsValid] = useState(false);
    // show password
    const [state,setstate] = useState(false);
    const toggle = () => {
@@ -32,15 +34,26 @@ function Login() {
       body:formData
       });
       result = await result.json();
-
+      console.warn(result)
       if(result.response==="LoggedIn")
       {
-         localStorage.setItem('admin_login',JSON.stringify(username));
+         if(result.role==1)
+         {
+         localStorage.setItem('admin_login',JSON.stringify(result.id));
          history.push("/admin")
+         }
+         else{
+            swal({
+               title: "Ops!",
+               text: "Access Denied!",
+               icon: "warning",
+               button: "ok!",
+             });
+         }
       }
       else
       {
-         alert("Bhak bsdk");
+         setIsValid(true);
       }
    }
 
@@ -48,8 +61,12 @@ function Login() {
       <>
          
           <div className="full_container">
+             {isValid 
+              ? < div class="alert alert-danger" role="alert">
+              Login failed wrong user credentials
+               </div>:""}
          <div className="container">
-        
+   
             <div className="center verticle_center full_height">
             <div className="heading text-center">
                <h3>Automatic TimeTable Generator</h3>
@@ -86,6 +103,7 @@ function Login() {
                      </form>
                   </div>
                </div>
+               <p className="h5 text-center ">Are you Faculty? <Link to="/">Signin</Link></p>
             </div>
          </div>
       </div>

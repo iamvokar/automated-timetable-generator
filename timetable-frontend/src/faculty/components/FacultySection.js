@@ -4,154 +4,9 @@ import {Button,Modal} from 'react-bootstrap'
 import {useState,useEffect} from 'react'
 import swal from 'sweetalert';
 
-function FacultyModal(props) {
-    const [faculty_id,setfaculty_id] = useState("");
-    const [faculty_name,setfaculty_name] = useState("");
-    const [faculty_email,setfaculty_email] = useState("");
-    const [gender,setgender] = useState("");
-    const [experience,setexperience] = useState("");
-    const [status,setStatus] = useState("");
 
-
-    const addSubject = async (event) => {
-      event.preventDefault();
-
-      const formData = new FormData();
-      formData.append("faculty_id",faculty_id)
-      formData.append("faculty_name",faculty_name)
-      formData.append("faculty_email",faculty_email)
-      formData.append("gender",gender)
-      formData.append("experience",experience)
-      formData.append("status",status)
-      let result= await fetch("http://127.0.0.1:8000/api/addFaculty",{
-        method:'POST',
-        body:formData
-      });
-      if (result.status == 200) {
-        swal({
-          title: "success!",
-          text: "faculty added!",
-          icon: "success",
-          button: "ok!",
-        });
-      }
-      else {
-        swal({
-          title: "Ops!",
-          text: "something went wrong!",
-          icon: "warning",
-          button: "ok!",
-        });
-      }
-      props.onHide()
-      props.get()
-    }
-    return (
-      <Modal
-        {...props}
-        size="lg"
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-      >
-        <Modal.Header className='head' closeButton>
-         <div className="text-light text-center">
-            <h1>Faculty</h1>
-         </div>
-        </Modal.Header>
-        <Modal.Body>
-        <div className="full_container ">
-        <div className="container justify-content-center ">
-          <div className="center verticle_center full_height ">
-              <div className="login_form">
-                <form className='' onSubmit={addSubject}>
-                  <fieldset className=''>
-                    <div className="field ">
-                      <input
-                        type="text"
-                        name="course"
-                        placeholder="Faculty ID"
-                        onChange={(e)=>setfaculty_id(e.target.value)}
-                      />
-                    </div>
-                    <div class="field">
-                      <input
-                        type="text"
-                        name="course_name"
-                        placeholder="Faculty Name"
-                        onChange={(e)=>setfaculty_name(e.target.value)}
-                      />
-                    </div>
-                    <div class="field">
-                      <input
-                        type="text"
-                        name="course_name"
-                        placeholder="Faculty Email"
-                        onChange={(e)=>setfaculty_email(e.target.value)}
-                      />
-                    </div>
-                    <div className='login_radio mb-3'>
-                      <lable className="title">Gender :</lable>
-                      <input
-                        type="radio"
-                        name="gender"
-                        id="gender"
-                        value="Male"
-                        onChange={(e)=>setgender(e.target.value)}
-                      />
-                      <lable for="active" className="title">Male</lable>
-                      <input
-                        type="radio"
-                        name="gender"
-                        id="inactive"
-                        value="Female"
-                        onChange={(e)=>setgender(e.target.value)}
-                      />
-                      <lable for="inactive" className="title">Female</lable>
-                      </div>
-                    <div class="field">
-                      <input
-                        type="text"
-                        name="Experience"
-                        placeholder="Experience"
-                        onChange={(e)=>setexperience(e.target.value)}
-                      />
-                    </div>
-                    <div className='login_radio'>
-                      <lable className="title">Status :</lable>
-                      <input
-                        type="radio"
-                        name="status"
-                        id="active"
-                        value="Active"
-                        onChange={(e)=>setStatus(e.target.value)}
-                      />
-                      <lable for="active" className="title">Active</lable>
-                      <input
-                        type="radio"
-                        name="status"
-                        id="inactive"
-                        value="Inactive"
-                        onChange={(e)=>setStatus(e.target.value)}
-                      />
-                      <lable for="inactive" className="title">Inactive</lable>
-                    </div>
-                    <div className="field pt-4">
-                      <input type="submit" value="Add Faculty" className="btn" />
-                    </div>
-                  </fieldset>
-                </form>
-              </div>
-            </div>
-          </div>
-      </div>
-        </Modal.Body>
-        <Modal.Footer className='head'>
-          <Button onClick={props.onHide}>Close</Button>
-        </Modal.Footer>
-      </Modal>
-    );
-  }
-  function UpdateFacultyModal(props) {
+  function ReportFacultyModal(props) {
+    const [id, setID] = useState("");
     const [faculty_id,setfaculty_id] = useState("");
     const [faculty_name,setfaculty_name] = useState("");
     const [faculty_email,setfaculty_email] = useState("");
@@ -165,17 +20,17 @@ function FacultyModal(props) {
     
 
 
-      const updateFaculty =  async (event,id) => {
+      const ReportFaculty =  async (event) => {
       event.preventDefault();
-      console.log("hello",id)
       const formData = new FormData();
+      formData.append("id", id)
       formData.append("faculty_id",faculty_id)
       formData.append("faculty_name",faculty_name)
       formData.append("faculty_email",faculty_email)
       formData.append("gender",gender)
       formData.append("experience",experience)
       formData.append("status",status)
-      let result=await fetch('http://127.0.0.1:8000/api/updateFaculty/'+id,{
+      let result=await fetch('http://127.0.0.1:8000/api/FacultyReportupdate/',{
         method:'POST',
         body:formData
       
@@ -204,6 +59,7 @@ function FacultyModal(props) {
       let result = await fetch('http://127.0.0.1:8000/api/prefillFaculty/'+props.id);
       result = await result.json();
       setData(result)
+      setID(data.id)
       setfaculty_id(data.faculty_id)
       setfaculty_name(data.faculty_name)
       setfaculty_email(data.faculty_email)
@@ -226,7 +82,7 @@ function FacultyModal(props) {
     >
       <Modal.Header className='head' closeButton>
        <div className="text-light text-center">
-          <h1>Update Faculty</h1>
+          <h1>Report Faculty</h1>
        </div>
       </Modal.Header>
       <Modal.Body>
@@ -234,7 +90,7 @@ function FacultyModal(props) {
       <div className="container justify-content-center ">
         <div className="center verticle_center full_height ">
             <div className="login_form">
-              <form className='' onSubmit={(e) => updateFaculty(e, data.id)}>
+              <form className='' onSubmit={(e) => ReportFaculty(e, data.id)}>
                 <fieldset className=''>
                   <div className="field ">
                     <input
@@ -315,7 +171,7 @@ function FacultyModal(props) {
                     <lable for="inactive" className="title">Inactive</lable>
                   </div>
                   <div className="field pt-4">
-                    <input type="submit" value="Update Faculty" className="btn" />
+                    <input type="submit" value="Report" className="btn" />
                   </div>
                 </fieldset>
               </form>
@@ -331,7 +187,7 @@ function FacultyModal(props) {
     );
   }
 function FacultySection() {
-  const [modalShow, setModalShow] = useState(false);
+ 
   const [modalShow1, setModalShow1] = useState(false);
   const [update,setupdate] = useState();
   const [data,setData] = useState([]);
@@ -340,32 +196,7 @@ function FacultySection() {
     getData()
   },[])
   
-  function confirmation(id) {
-    swal({
-      title: "Are you sure?",
-      text: "Once deleted, you will not be able to recover this data!",
-      icon: "warning",
-      buttons: true,
-      dangerMode: true,
-    })
-      .then((willDelete) => {
-        if (willDelete) {
-          deleteFacutly(id)
-          swal("Data has been deleted!", {
-            icon: "success",
-          });
-        }
-        else {
-          swal("Your data is safe!");
-        }
-      });
-  }
-  async function deleteFacutly(id) {
-    let result = await fetch('http://127.0.0.1:8000/api/deleteFaculty/'+id,{
-      method:'DELETE'
-    });
-    getData()
-  }
+
 
 async function getData() {
     let result = await fetch('http://127.0.0.1:8000/api/fetchFaculty');
@@ -393,11 +224,7 @@ function changeCourseInfo(id){
 
                 <div className="row justify-content-center white_shd1 ">
 
-                    <div className="col-md-12  add">
-                        <Button variant="success" onClick={() => setModalShow(true)}>
-                            Add Faculty
-                        </Button>
-                    </div>
+               
 
                     <div class="col-md-8 adds pt-5">
                         <div class="white_shd2 ">
@@ -444,7 +271,7 @@ function changeCourseInfo(id){
                                                 <td className="text-center">{item.gender}</td>
                                                 <td className="text-center">{item.experience}</td>
                                                 <td className="text-center">{item.status}</td>
-                                                <td className=''><button class='btn bg-success ml-3' onClick={() =>  { setModalShow1(true); changeCourseInfo(item.id);} }> <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button><button class='btn bg-danger ml-3' onClick={()=>{confirmation(item.id)}}><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+                                                <td className=''><button class='btn bg-success ml-3' onClick={() =>  { setModalShow1(true); changeCourseInfo(item.id);} }>Report</button></td>
                                             </tr>)}
                                         </tbody>
                                     </table>
@@ -452,12 +279,7 @@ function changeCourseInfo(id){
                             </div>
                         </div>
                     </div> 
-                    <FacultyModal
-                        show={modalShow}
-                        onHide={() => setModalShow(false)}
-                        get={()=>getData()}
-                    />
-                      <UpdateFacultyModal
+                      <ReportFacultyModal
                         show={modalShow1}
                         onHide={() => setModalShow1(false)}
                         id={update}

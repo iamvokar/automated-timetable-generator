@@ -3,11 +3,12 @@ import "./Sign.css"
 import {FaEyeSlash,FaEye} from 'react-icons/fa'
 import {Link,useHistory} from 'react-router-dom'
 import {useState,useEffect} from 'react'
+import swal from 'sweetalert';
 
 function Sign() {
    const [username,setusername] = useState("")
    const [password,setpassword] = useState("")
-
+   const [isValid, setIsValid] = useState(false);
    // show password
    const [state,setstate] = useState(false);
    const toggle = () => {
@@ -17,11 +18,12 @@ function Sign() {
 
    const history = useHistory();
    useEffect(()=> {
-      if (localStorage.getItem('user_login')||localStorage.getItem('admin_login'))
+      if (localStorage.getItem('user_login'))
       {
-         history.push("/admin")
+         history.push("/faculty")
       }
    }, [])
+   
    
    const signin = async (event)=> {
       event.preventDefault();
@@ -44,19 +46,36 @@ function Sign() {
       
       if(result.response==="LoggedIn")
       {
-         localStorage.setItem('user_login',JSON.stringify(username));
-         history.push("/admin")
+         if(result.role==0)
+         {
+         localStorage.setItem('user_login',JSON.stringify(result.id));
+         history.push("/faculty")
+         }
+         else{
+            swal({
+               title: "Ops!",
+               text: "Access Denied!",
+               icon: "warning",
+               button: "ok!",
+             });
+         }
+        
       }
       else
       {
-         alert("Bhak bsdk")
+         setIsValid(true);
       }
       
    }
+  
    return (
       <>
          
           <div className="full_container">
+          {isValid 
+              ? < div class="alert alert-danger" role="alert">
+              Login failed wrong user credentials
+               </div>:""}
          <div className="container">
         
             <div className="center verticle_center full_height">
