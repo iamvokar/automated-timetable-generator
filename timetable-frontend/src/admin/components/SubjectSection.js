@@ -228,14 +228,14 @@ function SubjectModal(props) {
                         type="radio"
                         value="Active"
                         // defaultValue={data.status}
-                        checked={data.status === "Active"}
+                        defaultChecked={data.status === "Active"}
                         onClick={(e)=>setStatus(e.target.value)}/>
                       <lable for="active" className="title">Active</lable>
                       <input
                         type="radio"
                         value="Inactive"
                         // defaultValue={data.status}
-                        checked={data.status === "Inactive"}
+                        defaultChecked={data.status === "Inactive"}
                         onClick={(e)=>setStatus(e.target.value)}
                       />
                       <lable for="inactive" className="title">Inactive</lable>
@@ -309,7 +309,27 @@ function SubjectSection() {
   
     }
    
-
+    async function search(key) {
+      if(key.length>1)
+      {
+        let result = await fetch('http://127.0.0.1:8000/api/searchSubject/'+key);
+        result = await result.json();
+        console.warn(result.response)
+        if(result.response==="not found")
+        {
+          
+        }
+        else
+        {
+          setData(result)
+        }
+      
+      }
+      else
+      {
+        getData()
+      }
+    }
 
     return (
         <>
@@ -346,6 +366,7 @@ function SubjectSection() {
                                    <p>Search <input
                                          type="text"
                                             name="course"
+                                            onChange={(e) => search(e.target.value)}
                                      /></p>
                                 </div>
                             </div>

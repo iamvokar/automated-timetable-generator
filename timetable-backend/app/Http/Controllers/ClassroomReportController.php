@@ -29,4 +29,18 @@ class ClassroomReportController extends Controller
     function ClassroomReportdelete($id){
         Classroomreport::find($id)->delete();
     }
+    function searchReportClassroom($key)
+    {
+       $value= Classroomreport::where('classroom_type','LIKE',"%$key")->get();
+       if($value)
+       {
+           return $value;
+       }
+       else
+       {
+        return response()->json([
+            'response' => "notfound"
+            ], 200);
+       }
+    }
 }

@@ -37,4 +37,19 @@ class SubjectController extends Controller
     function deleteSubject($id){
         Subject::find($id)->delete();
     }
+
+    function searchSubject($key)
+    {
+       $value= Subject::where('subject_name','LIKE',"%$key")->get();
+       if($value)
+       {
+           return $value;
+       }
+       else
+       {
+        return response()->json([
+            'response' => "notfound"
+            ], 200);
+       }
+    }
 }

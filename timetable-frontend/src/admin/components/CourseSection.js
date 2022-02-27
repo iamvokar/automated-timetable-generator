@@ -246,7 +246,7 @@ function UpdateCourseModal(props) {
                         // defaultValue={data.status}
                         name="status"
                         onClick={(e) => setStatus(e.target.value)}
-                        checked={data.status === "Active"} 
+                        defaultChecked={data.status === "Active"} 
                         />
                       <lable for="active" className="title">Active</lable>
                       <input
@@ -255,7 +255,7 @@ function UpdateCourseModal(props) {
                         // defaultValue={data.status}
                         name="status"
                         onClick={(e) => setStatus(e.target.value)}
-                        checked={data.status === "Inactive"}
+                        defaultChecked={data.status === "Inactive"}
                       />
                       <lable for="inactive" className="title">Inactive</lable>
                     </div>
@@ -331,7 +331,27 @@ function CourseSection() {
     setData(result)
   }
 
-
+  async function search(key) {
+    if(key.length>1)
+    {
+      let result = await fetch('http://127.0.0.1:8000/api/search/'+key);
+      result = await result.json();
+      console.warn(result.response)
+      if(result.response==="not found")
+      {
+        
+      }
+      else
+      {
+        setData(result)
+      }
+    
+    }
+    else
+    {
+      getData()
+    }
+  }
 
 
   return (
@@ -369,6 +389,7 @@ function CourseSection() {
                     <p>Search <input
                       type="text"
                       name="course"
+                      onChange={(e) => search(e.target.value)}
                     /></p>
                   </div>
                 </div>

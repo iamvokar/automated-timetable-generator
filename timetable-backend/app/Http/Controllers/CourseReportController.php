@@ -28,5 +28,19 @@ class CourseReportController extends Controller
       function CourseReportdelete($id){
         Coursereport::find($id)->delete();
     }
+    function searchReport($key)
+    {
+       $value= Coursereport::where('course_name','LIKE',"%$key")->get();
+       if($value)
+       {
+           return $value;
+       }
+       else
+       {
+        return response()->json([
+            'response' => "notfound"
+            ], 200);
+       }
+    }
 
 }

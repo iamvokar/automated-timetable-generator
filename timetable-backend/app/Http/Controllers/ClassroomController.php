@@ -37,4 +37,18 @@ class ClassroomController extends Controller
     function deleteClassroom($id){
         Classroom::find($id)->delete();
     }
+    function searchClassroom($key)
+    {
+       $value= Classroom::where('classroom_type','LIKE',"%$key")->get();
+       if($value)
+       {
+           return $value;
+       }
+       else
+       {
+        return response()->json([
+            'response' => "notfound"
+            ], 200);
+       }
+    }
 }

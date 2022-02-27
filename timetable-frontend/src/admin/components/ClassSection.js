@@ -11,7 +11,7 @@ function ClassModal(props) {
     const [status,setStatus] = useState("");
 
 
-    const addSubject = async (event) => {
+    const addClassroom = async (event) => {
       event.preventDefault();
 
       const formData = new FormData();
@@ -59,7 +59,7 @@ function ClassModal(props) {
         <div className="container justify-content-center ">
           <div className="center verticle_center full_height ">
               <div className="login_form">
-                <form className='' onSubmit={addSubject}>
+                <form className='' onSubmit={addClassroom}>
                   <fieldset className=''>
                     <div className="field ">
                       <input
@@ -231,7 +231,7 @@ function ClassModal(props) {
                           name="status"
                           id="active"
                           value="Active"
-                          checked={data.status === "Active"}
+                          defaultChecked={data.status === "Active"}
                           onChange={(e)=>setStatus(e.target.value)}
                         />
                         <lable for="active" className="title">Active</lable>
@@ -240,7 +240,7 @@ function ClassModal(props) {
                           name="status"
                           id="inactive"
                           value="Inactive"
-                          checked={data.status === "Inactive"}
+                          defaultChecked={data.status === "Inactive"}
                           onChange={(e)=>setStatus(e.target.value)}
                         />
                         <lable for="inactive" className="title">Inactive</lable>
@@ -310,6 +310,28 @@ function changeCourseInfo(id){
   setupdate(id)
   
 }
+
+async function search(key) {
+  if(key.length>1)
+  {
+    let result = await fetch('http://127.0.0.1:8000/api/searchClassroom/'+key);
+    result = await result.json();
+    console.warn(result.response)
+    if(result.response==="not found")
+    {
+      
+    }
+    else
+    {
+      setData(result)
+    }
+  
+  }
+  else
+  {
+    getData()
+  }
+}
     return (
         <>
             <div className="container-fluid">
@@ -345,6 +367,7 @@ function changeCourseInfo(id){
                                    <p>Search <input
                                          type="text"
                                             name="course"
+                                            onChange={(e) => search(e.target.value)}
                                      /></p>
                                 </div>
                             </div>

@@ -41,4 +41,19 @@ class FacultyController extends Controller
     function deleteFaculty($id){
         Faculty::find($id)->delete();
     }
+
+    function searchFaculty($key)
+    {
+       $value= Faculty::where('faculty_name','LIKE',"%$key")->get();
+       if($value)
+       {
+           return $value;
+       }
+       else
+       {
+        return response()->json([
+            'response' => "notfound"
+            ], 200);
+       }
+    }
 }

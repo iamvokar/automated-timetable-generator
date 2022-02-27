@@ -13,8 +13,10 @@ function SettingSection() {
         result = await result.json();
         setData(result)
       }
-      userinfo(user)
-      console.warn(data)
+      useEffect(() => {
+        userinfo(user)
+      }, [])
+      
       
   return (
   <>

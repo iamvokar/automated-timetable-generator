@@ -107,14 +107,14 @@ function UpdateCourseModal(props) {
                         type="radio"
                         value="Active"
                         name="status"
-                        checked={data.status === "Active"}
+                        defaultChecked={data.status === "Active"}
                         onClick={(e) => setStatus(e.target.value)} />
                       <lable for="active" className="title">Active</lable>
                       <input
                         type="radio"
                         value="Inactive"
                         name="status"
-                        checked={data.status === "Inactive"}
+                        defaultChecked={data.status === "Inactive"}
                         // defaultValue={data.status}
                         onClick={(e) => setStatus(e.target.value)}
                       />
@@ -167,7 +167,27 @@ function CourseSection() {
   }
 
 
-
+  async function search(key) {
+    if(key.length>1)
+    {
+      let result = await fetch('http://127.0.0.1:8000/api/searchReport/'+key);
+      result = await result.json();
+      console.warn(result.response)
+      if(result.response==="not found")
+      {
+        
+      }
+      else
+      {
+        setData(result)
+      }
+    
+    }
+    else
+    {
+      getData()
+    }
+  }
 
   return (
     <>
@@ -199,6 +219,7 @@ function CourseSection() {
                     <p>Search <input
                       type="text"
                       name="course"
+                      onChange={(e) => search(e.target.value)}
                     /></p>
                   </div>
                 </div>

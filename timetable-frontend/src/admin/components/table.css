@@ -124,7 +124,7 @@ table {
     margin: 0 0 20px;
 }
 
-.login_form form .field input {
+.login_form form .field input,select {
    
     width: 490px;
     margin: 0 auto;

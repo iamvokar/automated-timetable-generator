@@ -156,7 +156,7 @@ import swal from 'sweetalert';
                       name="status"
                       id="active"
                       value="Active"
-                      checked={data.status === "Active"}
+                      defaultChecked={data.status === "Active"}
                       onChange={(e)=>setStatus(e.target.value)}
                     />
                     <lable for="active" className="title">Active</lable>
@@ -165,7 +165,7 @@ import swal from 'sweetalert';
                       name="status"
                       id="inactive"
                       value="Inactive"
-                      checked={data.status === "Inactive"}
+                      defaultChecked={data.status === "Inactive"}
                       onChange={(e)=>setStatus(e.target.value)}
                     />
                     <lable for="inactive" className="title">Inactive</lable>
@@ -211,6 +211,27 @@ function changeCourseInfo(id){
   
 
 }
+async function search(key) {
+  if(key.length>1)
+  {
+    let result = await fetch('http://127.0.0.1:8000/api/searchReportFaculty/'+key);
+    result = await result.json();
+    console.warn(result.response)
+    if(result.response==="not found")
+    {
+      
+    }
+    else
+    {
+      setData(result)
+    }
+  
+  }
+  else
+  {
+    getData()
+  }
+}
     return (
         <>
             <div className="container-fluid">
@@ -242,6 +263,7 @@ function changeCourseInfo(id){
                                    <p>Search <input
                                          type="text"
                                             name="course"
+                                            onChange={(e) => search(e.target.value)}
                                      /></p>
                                 </div>
                             </div>

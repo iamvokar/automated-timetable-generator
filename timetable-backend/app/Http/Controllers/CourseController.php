@@ -36,4 +36,19 @@ class CourseController extends Controller
         Course::find($id)->delete();
     }
 
+    function search($key)
+    {
+       $value= Course::where('course_name','LIKE',"%$key")->get();
+       if($value)
+       {
+           return $value;
+       }
+       else
+       {
+        return response()->json([
+            'response' => "notfound"
+            ], 200);
+       }
+    }
+
 }

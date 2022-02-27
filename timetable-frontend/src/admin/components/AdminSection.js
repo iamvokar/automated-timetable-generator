@@ -19,7 +19,6 @@ function ConfirmCourseModal(props) {
 
   const ConfirmCourse = async (event, id) => {
     event.preventDefault();
-    console.log("hello", id)
     const formData = new FormData();
     formData.append("course_id", course_id)
     formData.append("course_name", course_name)
@@ -50,8 +49,8 @@ function ConfirmCourseModal(props) {
 
 
   }
-  async function prefillData() {
-    let result = await fetch('http://127.0.0.1:8000/api/CourseReportprefill/' + props.id);
+  async function prefillData(id) {
+    let result = await fetch('http://127.0.0.1:8000/api/CourseReportprefill/' + id);
     result = await result.json();
     setData(result)
     setCourse_id(data.course_id)
@@ -60,7 +59,7 @@ function ConfirmCourseModal(props) {
   }
 
   useEffect(() => {
-    prefillData()
+    prefillData(props.id)
   }, [props])
   // UpdateCourse(props)
   return (
@@ -106,7 +105,9 @@ function ConfirmCourseModal(props) {
                         value="Active"
                         name="status"
                         // defaultValue={data.status}
+                        defaultChecked={data.status === "Active"}
                         onClick={(e) => setStatus(e.target.value)} />
+                        
                       <lable for="active" className="title">Active</lable>
                       <input
                         type="radio"
@@ -114,6 +115,7 @@ function ConfirmCourseModal(props) {
                         name="status"
                         // defaultValue={data.status}
                         onClick={(e) => setStatus(e.target.value)}
+                        defaultChecked={data.status === "Inactive"}
                       />
                       <lable for="inactive" className="title">Inactive</lable>
                     </div>
@@ -150,7 +152,6 @@ function ConfirmSubjectModal(props) {
 
   const updateSubject = async (event, id) => {
     event.preventDefault();
-    console.log("hello", id)
     const formData = new FormData();
     formData.append("subject_id", subject_id)
     formData.append("subject_name", subject_name)
@@ -181,8 +182,8 @@ function ConfirmSubjectModal(props) {
     props.get()
 
   }
-  async function prefillData() {
-    let result = await fetch('http://127.0.0.1:8000/api/prefillSubject/' + props.id);
+  async function prefillData(id) {
+    let result = await fetch('http://127.0.0.1:8000/api/prefillSubject/' + id);
     result = await result.json();
     setData(result)
     setSubject_id(data.subject_id)
@@ -192,7 +193,7 @@ function ConfirmSubjectModal(props) {
   }
 
   useEffect(() => {
-    prefillData()
+    prefillData(props.id)
   }, [props])
   // UpdateCourse(props)
 
@@ -291,7 +292,6 @@ function ConfirmFacultyModal(props) {
 
   const updateFaculty = async (event, id) => {
     event.preventDefault();
-    console.log("hello", id)
     const formData = new FormData();
     formData.append("faculty_id", faculty_id)
     formData.append("faculty_name", faculty_name)
@@ -469,7 +469,6 @@ function ConfirmClassroomModal(props) {
 
   const updateClassroom = async (event, id) => {
     event.preventDefault();
-    console.log("hello", id)
     const formData = new FormData();
     formData.append("classroom_no", classroom_no)
     formData.append("classroom_type", classroom_type)
@@ -760,7 +759,7 @@ function AdminSection() {
     getSubject()
     getFaculty()
     getClassroom()
-  }, [])
+  }, [value])
 
   async function getCourse() {
     let result = await fetch('http://127.0.0.1:8000/api/CourseReportfetch');
@@ -793,14 +792,16 @@ function AdminSection() {
 
     const [userdata, setUserData] = useState([]);
     let user=localStorage.getItem('admin_login')
-    console.warn("check",user)
 
     async function userinfo(user) {
         let result = await fetch('http://127.0.0.1:8000/api/userinfo/' + user);
         result = await result.json();
         setUserData(result)
       }
-      userinfo(user)
+      useEffect(() => {
+        userinfo(user)
+      }, [value])
+      
 
   return (
     <>

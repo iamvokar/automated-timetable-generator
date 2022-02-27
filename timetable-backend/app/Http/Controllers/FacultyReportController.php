@@ -31,4 +31,18 @@ class FacultyReportController extends Controller
     function FacultyReportdelete($id){
         Facultyreport::find($id)->delete();
     }
+    function searchReportFaculty($key)
+    {
+       $value= Facultyreport::where('faculty_name','LIKE',"%$key")->get();
+       if($value)
+       {
+           return $value;
+       }
+       else
+       {
+        return response()->json([
+            'response' => "notfound"
+            ], 200);
+       }
+    }
 }

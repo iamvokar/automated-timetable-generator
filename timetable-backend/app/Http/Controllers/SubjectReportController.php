@@ -29,5 +29,18 @@ class SubjectReportController extends Controller
     function SubjectReportdelete($id){
         Subjectreport::find($id)->delete();
     }
-
+    function searchReportSubject($key)
+    {
+       $value= Subjectreport::where('subject_name','LIKE',"%$key")->get();
+       if($value)
+       {
+           return $value;
+       }
+       else
+       {
+        return response()->json([
+            'response' => "notfound"
+            ], 200);
+       }
+    }
 }
