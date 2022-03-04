@@ -3,7 +3,7 @@ import "./table.css"
 import {Button,Modal} from 'react-bootstrap'
 import {useState,useEffect} from 'react'
 import swal from 'sweetalert';
-
+import SideBar from './SideBar'
 
   function ReportFacultyModal(props) {
     const [id, setID] = useState("");
@@ -234,6 +234,7 @@ async function search(key) {
 }
     return (
         <>
+        <SideBar/>
             <div className="container-fluid">
                 <div className="row ">
                     <div className="col-md-12 ">
@@ -279,6 +280,7 @@ async function search(key) {
                                                 <th className="text-center">Faculty Email</th>
                                                 <th className="text-center">Gender</th>
                                                 <th className="text-center">Experience</th>
+                                                <th className="text-center">Semester</th>
                                                 <th className="text-center">Status</th>
                                                 <th className="text-center">Action</th>
                                             </tr>
@@ -292,6 +294,7 @@ async function search(key) {
                                                 <td className="text-center">{item.faculty_email}</td>
                                                 <td className="text-center">{item.gender}</td>
                                                 <td className="text-center">{item.experience}</td>
+                                                <td className="text-center">{item.semester}</td>
                                                 <td className="text-center">{item.status}</td>
                                                 <td className=''><button class='btn bg-success ml-3' onClick={() =>  { setModalShow1(true); changeCourseInfo(item.id);} }>Report</button></td>
                                             </tr>)}

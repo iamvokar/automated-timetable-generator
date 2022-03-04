@@ -3,11 +3,13 @@ import "./table.css"
 import {Button,Modal} from 'react-bootstrap'
 import {useState,useEffect} from 'react'
 import swal from 'sweetalert';
+import SideBar from './SideBar';
+import Semester from '../assets/array/Semester'
 
 function ClassModal(props) {
   const [classroom_no,setclassroom_no] = useState("");
     const [classroom_type,setclassroom_type] = useState("");
-    const [classroom_floor,setclassroom_floor] = useState("");
+    const [semester,setSemester] = useState("");
     const [status,setStatus] = useState("");
 
 
@@ -17,7 +19,7 @@ function ClassModal(props) {
       const formData = new FormData();
       formData.append("classroom_no",classroom_no)
       formData.append("classroom_type",classroom_type)
-      formData.append("classroom_floor",classroom_floor)
+      formData.append("semester",semester)
       formData.append("status",status)
       let result =  await fetch("http://127.0.0.1:8000/api/addClassroom",{
         method:'POST',
@@ -77,14 +79,14 @@ function ClassModal(props) {
                         onChange={(e)=>setclassroom_type(e.target.value)}
                       />
                     </div>
-                    <div class="field">
-                      <input
-                        type="text"
-                        name="course_name"
-                        placeholder="Class Floor"
-                        onChange={(e)=>setclassroom_floor(e.target.value)}
-                      />
-                    </div>
+                    <div class="d-flex w-75 ml-5 pl-5 pb-3" > 
+                  <label className='h6 pt-3 pr-1'>Semester:</label> 
+                  <select onChange={(e)=>setSemester(e.target.value)}>
+                   {Semester.map((item)=>
+                   <option defaultValue={item}>{item}</option>
+                   )}
+                  </select>
+                  </div>
                     <div className='login_radio'>
                       <lable className="title">Status :</lable>
                       <input
@@ -124,7 +126,7 @@ function ClassModal(props) {
   function UpadateClassModal(props) {
     const [classroom_no,setclassroom_no] = useState("");
     const [classroom_type,setclassroom_type] = useState("");
-    const [classroom_floor,setclassroom_floor] = useState("");
+    const [semester,setSemester] = useState("");
     const [status,setStatus] = useState("");
     const [data,setData] = useState([]);
     // console.warn("props",props.id)
@@ -138,7 +140,7 @@ function ClassModal(props) {
       const formData = new FormData();
       formData.append("classroom_no",classroom_no)
       formData.append("classroom_type",classroom_type)
-      formData.append("classroom_floor",classroom_floor)
+      formData.append("semester",semester)
       formData.append("status",status)
       let result = await fetch('http://127.0.0.1:8000/api/updateClassroom/'+id,{
         method:'POST',
@@ -171,7 +173,7 @@ function ClassModal(props) {
       setData(result)
       setclassroom_no(data.classroom_no)
       setclassroom_type(data.classroom_type)
-      setclassroom_floor(data.classroom_floor)
+      setSemester(data.semester)
       setStatus(data.status)
     }
 
@@ -215,15 +217,14 @@ function ClassModal(props) {
                           onChange={(e)=>setclassroom_type(e.target.value)}
                         />
                       </div>
-                      <div class="field">
-                        <input
-                          type="text"
-                          name="course_name"
-                          placeholder="Class Floor"
-                          defaultValue={data.classroom_floor}
-                          onChange={(e)=>setclassroom_floor(e.target.value)}
-                        />
-                      </div>
+                      <div class="d-flex w-75 ml-5 pl-5 pb-3" > 
+                  <label className='h6 pt-3 pr-1'>Semester:</label> 
+                  <select onChange={(e)=>setSemester(e.target.value)}>
+                   {Semester.map((item)=>
+                   <option defaultValue={item}>{item}</option>
+                   )}
+                  </select>
+                  </div>
                       <div className='login_radio'>
                         <lable className="title">Status :</lable>
                         <input
@@ -334,6 +335,7 @@ async function search(key) {
 }
     return (
         <>
+        <SideBar/>
             <div className="container-fluid">
                 <div className="row ">
                     <div className="col-md-12 ">
@@ -380,7 +382,7 @@ async function search(key) {
                                                 <th>#</th>
                                                 <th>Class No.</th>
                                                 <th>Class Type</th>
-                                                <th>Class Floor</th>
+                                                <th>semester</th>
                                                 <th>Status</th>
                                                 <th>Action</th>
                                             </tr>
@@ -391,7 +393,7 @@ async function search(key) {
                                                 <td className="text-center">{item.id}</td>
                                                 <td className="text-center">{item.classroom_no}</td>
                                                 <td className="text-center">{item.classroom_type}</td>
-                                                <td className="text-center">{item.classroom_floor}</td>
+                                                <td className="text-center">{item.semester}</td>
                                                 <td className="text-center">{item.status}</td>
                                                 <td className=''><button class='btn bg-success ml-3' onClick={() =>  { setModalShow1(true); changeCourseInfo(item.id);} }> <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button><button class='btn bg-danger ml-3' onClick={()=>{confirmation(item.id)}}><i class="fa fa-trash" aria-hidden="true"></i></button></td>
                                             </tr>)}

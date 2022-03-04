@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react'
 import { Tabs, Tab, AppBar } from '@material-ui/core'
 import swal from 'sweetalert';
 import { Button, Modal } from 'react-bootstrap'
-
+import SideBar from './SideBar';
 function ConfirmCourseModal(props) {
   const [course_id, setCourse_id] = useState("");
   const [course_name, setCourse_name] = useState("");
@@ -805,6 +805,7 @@ function AdminSection() {
 
   return (
     <>
+    <SideBar/>
       <div className="container-fluid">
         <div className="col-md-12 ">
           <div className="page_title ">

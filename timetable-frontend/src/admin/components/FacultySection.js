@@ -3,6 +3,8 @@ import "./table.css"
 import {Button,Modal} from 'react-bootstrap'
 import {useState,useEffect} from 'react'
 import swal from 'sweetalert';
+import SideBar from './SideBar';
+import Semester from '../assets/array/Semester'
 
 function FacultyModal(props) {
     const [faculty_id,setfaculty_id] = useState("");
@@ -10,6 +12,7 @@ function FacultyModal(props) {
     const [faculty_email,setfaculty_email] = useState("");
     const [gender,setgender] = useState("");
     const [experience,setexperience] = useState("");
+    const [semester,setSemester] = useState("");
     const [status,setStatus] = useState("");
 
 
@@ -22,6 +25,7 @@ function FacultyModal(props) {
       formData.append("faculty_email",faculty_email)
       formData.append("gender",gender)
       formData.append("experience",experience)
+      formData.append("experience",semester)
       formData.append("status",status)
       let result= await fetch("http://127.0.0.1:8000/api/addFaculty",{
         method:'POST',
@@ -116,6 +120,14 @@ function FacultyModal(props) {
                         onChange={(e)=>setexperience(e.target.value)}
                       />
                     </div>
+                    <div class="d-flex w-75 ml-5 pl-5 pb-3" > 
+                  <label className='h6 pt-3 pr-1'>Semester:</label> 
+                  <select onChange={(e)=>setSemester(e.target.value)}>
+                   {Semester.map((item)=>
+                   <option defaultValue={item}>{item}</option>
+                   )}
+                  </select>
+                  </div>
                     <div className='login_radio'>
                       <lable className="title">Status :</lable>
                       <input
@@ -157,6 +169,7 @@ function FacultyModal(props) {
     const [faculty_email,setfaculty_email] = useState("");
     const [gender,setgender] = useState("");
     const [experience,setexperience] = useState("");
+    const [semester,setSemester] = useState("");
     const [status,setStatus] = useState("");
     const [data,setData] = useState([]);
 
@@ -293,6 +306,14 @@ function FacultyModal(props) {
                       onChange={(e)=>setexperience(e.target.value)}
                     />
                   </div>
+                  <div class="d-flex w-75 ml-5 pl-5 pb-3" > 
+                  <label className='h6 pt-3 pr-1'>Semester:</label> 
+                  <select onChange={(e)=>setSemester(e.target.value)}>
+                   {Semester.map((item)=>
+                   <option defaultValue={item}>{item}</option>
+                   )}
+                  </select>
+                  </div>
                   <div className='login_radio'>
                     <lable className="title">Status :</lable>
                     <input
@@ -405,6 +426,7 @@ async function search(key) {
 }
     return (
         <>
+        <SideBar/>
             <div className="container-fluid">
                 <div className="row ">
                     <div className="col-md-12 ">
@@ -454,6 +476,7 @@ async function search(key) {
                                                 <th className="text-center">Faculty Email</th>
                                                 <th className="text-center">Gender</th>
                                                 <th className="text-center">Experience</th>
+                                                <th className="text-center">Semester</th>
                                                 <th className="text-center">Status</th>
                                                 <th className="text-center">Action</th>
                                             </tr>
@@ -467,6 +490,7 @@ async function search(key) {
                                                 <td className="text-center">{item.faculty_email}</td>
                                                 <td className="text-center">{item.gender}</td>
                                                 <td className="text-center">{item.experience}</td>
+                                                <td className="text-center">{item.semester}</td>
                                                 <td className="text-center">{item.status}</td>
                                                 <td className=''><button class='btn bg-success ml-3' onClick={() =>  { setModalShow1(true); changeCourseInfo(item.id);} }> <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button><button class='btn bg-danger ml-3' onClick={()=>{confirmation(item.id)}}><i class="fa fa-trash" aria-hidden="true"></i></button></td>
                                             </tr>)}

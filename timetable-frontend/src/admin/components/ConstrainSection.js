@@ -1,25 +1,68 @@
 import React from 'react'
 import "./table.css"
-import TimePicker from 'react-time-picker';
-import DurationPicker from "react-duration-picker";
 import {Button,Modal} from 'react-bootstrap'
 import {useState,useEffect} from 'react'
 import swal from 'sweetalert';
+import SideBar from './SideBar';
+import Hours from '../assets/array/Hours'
+import Min from '../assets/array/Min'
+import Semester from '../assets/array/Semester'
 
 function CreateConstrainModal(props) {
-  const [constrain_id,setconstrain] = useState("");
-  const [constrain_type,setconstrain_type] = useState("");
-  const [value, onChange] = useState('10:00');
+  const [constrain_id,setconstrain_id] = useState("");
+  const [constrains_type,setconstrains_type] = useState("");
+  const [starting,setstarting] = useState();
+  const [ending,setending] = useState();
+  const [duration,setduration] = useState("");
+  const [period,setperiod] = useState("");
 
-  const [time1, setTime1] = useState({
-    hours: 0,
-    minutes: 30,
-    seconds: 5
-  });
 
-  const handleChange1 = time1 => {
-    setTime1(time1);
-  };
+  const [hour,sethour] = useState(" " );
+  const [minute,setminute] = useState(" " );
+  const [ehour,setehour] = useState(" " );
+  const [eminute,seteminute] = useState(" " );
+
+  
+  useEffect(() => {
+    setstarting(hour+":"+minute)
+    setending(ehour+":"+eminute)
+  }, [hour,minute,ehour,eminute])
+ 
+  const createConstrain = async (event) => {
+    event.preventDefault();
+
+    const formData = new FormData();
+    formData.append("constrain_id", constrain_id)
+    formData.append("constrains_type", constrains_type)
+    formData.append("starting", starting)
+    formData.append("ending", ending)
+    formData.append("duration", duration)
+    formData.append("period", period)
+    let result = await fetch("http://127.0.0.1:8000/api/addConstrainrule", {
+      method: 'POST',
+      body: formData
+
+
+    });
+    if (result.status == 200) {
+      swal({
+        title: "success!",
+        text: "your course added!",
+        icon: "success",
+        button: "ok!",
+      });
+    }
+    else {
+      swal({
+        title: "Ops!",
+        text: "something went wrong!",
+        icon: "warning",
+        button: "ok!",
+      });
+    }
+    props.onHide()
+    //props.get()
+  }
   return (
     <Modal
       {...props}
@@ -37,14 +80,14 @@ function CreateConstrainModal(props) {
       <div className="container justify-content-center ">
         <div className="center verticle_center full_height ">
             <div className="login_form">
-              <form className=''>
+              <form className='' onSubmit={createConstrain}>
                 <fieldset className=''>
                 <div className="field ">
                     <input
                       type="text"
                       name="course"
                       placeholder="Constrain ID"
-                      onChange={(e)=>setconstrain(e.target.value)}
+                      onChange={(e)=>setconstrain_id(e.target.value)}
                     />
 
                   </div>
@@ -53,27 +96,64 @@ function CreateConstrainModal(props) {
                       type="text"
                       name="course_name"
                       placeholder="Constrain Type"
-                      onChange={(e)=>setconstrain_type(e.target.value)}
+                      onChange={(e)=>setconstrains_type(e.target.value)}
                     />
                   </div>
-                  <div class="field "> 
- 
-                  <TimePicker onChange={onChange} value={value} disableClock="true"/>
+                  <div class="d-flex w-75 ml-5 pl-5 pb-3" > 
+                  <label className='h6 pt-3 pr-1'>Starting:</label> 
+                  <select onChange={(e)=>sethour(e.target.value)} name="hour" width="10%">
+                  {Hours.map((item)=>
+                  <option defaultValue={item}>{item}</option>
+                  )}
+                  </select>
+                  <span className="pt-3 px-3" >
+                  HOUR 
+                  </span>
+                  <select onChange={(e)=>setminute(e.target.value)} name="minute">
+                  {Min.map((item)=>
+                  <option defaultValue={item}>{item}</option>
+                  )}
+                  </select>
+                  <span className="pt-3 px-3" >
+                  MINUTE
+                  </span>
                   </div>
-                  <div class="field ">  
-   
-                  <TimePicker onChange={onChange} value={value}  disableClock="true"/>
+                  <div class="d-flex w-75 ml-5 pl-5 pb-3" > 
+                  <label className='h6 pt-3 pr-1'>Ending:</label> 
+                  <select onChange={(e)=>setehour(e.target.value)} name="ehour" width="10%">
+                  {Hours.map((item)=>
+                  <option defaultValue={item}>{item}</option>
+                  )}
+                  </select>
+                  <span className="pt-3 px-3" >
+                  HOUR 
+                  </span>
+                  <select onChange={(e)=>seteminute(e.target.value)} name="ehour">
+                  {Min.map((item)=>
+                  <option defaultValue={item}>{item}</option>
+                  )}
+                  </select>
+                  <span className="pt-3 px-3" >
+                  MINUTE
+                  </span>
                   </div>
-                  <div className="field ml-5 pl-5">
-                  <DurationPicker initialDuration={time1} onChange={handleChange1} />
-
+                  <div class="d-flex w-75 ml-5 pl-5 pb-3" > 
+                  <label className='h6 pt-3 pr-1'>Duration:</label> 
+                  <select onChange={(e)=>setduration(e.target.value)}>
+                  {Min.map((item)=>
+                  <option defaultValue={item}>{item}</option>
+                  )}
+                  </select>
+                  <span className="pt-3 px-3" >
+                  MINUTE
+                  </span>
                   </div>
                   <div class="field">
                     <input
                       type="text"
                       name="course_name"
                       placeholder="No of Period"
-                      onChange={(e)=>setconstrain_type(e.target.value)}
+                      onChange={(e)=>setperiod(e.target.value)}
                     />
                   </div>
                   <div className="field pt-4">
@@ -95,24 +175,26 @@ function CreateConstrainModal(props) {
 function AddConstrainModal(props) {
   
   const [course_id,setcourse_id] = useState("");
-  const [subject_id,setsubject_id] = useState("");
+  const [semester,setSemester] = useState("");
   const [faculty_id,setfaculty_id] = useState("");
-  const [classroom_id,setclassroom_id] = useState("");
+  const [classroom_no,setclassroom_no] = useState("");
+  const [constrain_id,setconstrain_id] = useState("");
   const [status,setStatus] = useState("");
   const [data1, setData1] = useState([]);
-  const [data2, setData2] = useState([]);
   const [data3, setData3] = useState([]);
   const [data4, setData4] = useState([]);
-  console.warn("check",faculty_id);
+  const [data5, setData5] = useState([]);
+  console.warn("check",constrain_id);
 
   const addConstrain = async (event) => {
     event.preventDefault();
    
     const formData = new FormData();
     formData.append("course_id",course_id)
-    formData.append("subject_id",subject_id)
+    formData.append("semester",semester)
     formData.append("faculty_id",faculty_id)
-    formData.append("classroom_no",classroom_id)
+    formData.append("classroom_no",classroom_no)
+    formData.append("constrain_id",constrain_id)
     formData.append("status",status)
     let result =  await fetch("http://127.0.0.1:8000/api/addConstrain",{
       method:'POST',
@@ -141,9 +223,10 @@ function AddConstrainModal(props) {
 
   useEffect(() => {
     getCourse()
-    getSubject()
+
     getFaculty()
     getClassroom()
+    getConstrain()
   }, [])
 
   async function getCourse() {
@@ -152,11 +235,6 @@ function AddConstrainModal(props) {
     setData1(result)
   }
 
-  async function getSubject() {
-    let result = await fetch('http://127.0.0.1:8000/api/fetchSubject');
-    result = await result.json();
-    setData2(result)
-  }
 
   async function getFaculty() {
     let result = await fetch('http://127.0.0.1:8000/api/fetchFaculty');
@@ -168,6 +246,11 @@ function AddConstrainModal(props) {
     let result = await fetch('http://127.0.0.1:8000/api/fetchClassroom');
     result = await result.json();
     setData4(result)
+  }
+  async function getConstrain() {
+    let result = await fetch('http://127.0.0.1:8000/api/fetchConstrainrule');
+    result = await result.json();
+    setData5(result)
   }
 
   return (
@@ -194,43 +277,41 @@ function AddConstrainModal(props) {
                   <label className='h4 pt-2'>Course : </label> 
                   <select onChange={(e)=>setcourse_id(e.target.value)}>
                   {data1.map((item)=>
-                  <option defaultValue={item.id}>{item.id}:{item.course_name}</option>
+                  <option value={item.id}>{item.id}:{item.course_name}</option>
                   )}
                   </select>
                   </div>
                 
-                  <div class="field">
-                  <label className='h4 pt-2'>Subject : </label> 
-                  <select onChange={(e)=>setsubject_id(e.target.value)}>
-                  {data2.map((item)=>
-                  <option defaultValue={item.id}>{item.id}:{item.subject_name}</option>
-                  )}
-                  </select>
-                  </div>
-                  <div class="field">
-                  <label className='h4 pt-2'>Faculty : </label> 
-                  <select onChange={(e)=>setfaculty_id(e.target.value)}>
-                  {data3.map((item)=>
-                  <option defaultValue={item.id}>{item.id}:{item.faculty_name}</option>
-                  )}
-                  </select>
-                  </div>
-                  <div class="field">
-                  <label className='h4 pt-2'>CLassroom: </label> 
-                  <select onChange={(e)=>setclassroom_id(e.target.value)}>
-                  {data4.map((item)=>
-                  <option defaultValue={item.id}>{item.id}:{item.classroom_type}</option>
-                  )}
+                  <div class="field" > 
+                  <label className='h4 pt-2'>Semester:</label> 
+                  <select onChange={(e)=>setSemester(e.target.value)}>
+                   {Semester.map((item)=>
+                   <option value={item}>{item}</option>
+                   )}
                   </select>
                   </div>
                   <div class="field">
                   <label className='h4 pt-2'>Constrain: </label> 
-                  <select onChange={(e)=>setclassroom_id(e.target.value)}>
-                  {data4.map((item)=>
-                  <option defaultValue={item.id}>{item.id}:{item.classroom_type}</option>
+                  <select onChange={(e)=>setconstrain_id(e.target.value)}>
+                  {data5.map((item)=>
+                  <option value={item.id}>{item.id}:{item.constrains_type}</option>
                   )}
                   </select>
                   </div>
+                  <div className='login_radio'>
+                      <lable className="title">Status :</lable>
+                      <input
+                        type="radio"
+                        value="Active"
+                        onClick={(e) => setStatus(e.target.value)} />
+                      <lable for="active" className="title">Active</lable>
+                      <input
+                        type="radio"
+                        value="Inactive"
+                        onClick={(e) => setStatus(e.target.value)}
+                      />
+                      <lable for="inactive" className="title">Inactive</lable>
+                    </div>
                   <div className="field pt-4">
                     <input type="submit" value="Add Constrain" className="btn" />
                   </div>
@@ -253,6 +334,7 @@ function ConstrainSection() {
     const [modalShow1, setModalShow1] = React.useState(false);
     return (
         <>
+        <SideBar/>
             <div className="container-fluid">
                 <div className="row ">
                     <div className="col-md-12 ">
@@ -301,10 +383,11 @@ function ConstrainSection() {
                                         <thead class="thead-dark ">
                                             <tr>
                                                 <th>#</th>
-                                                <th>Class ID</th>
-                                                <th>Class No.</th>
-                                                <th>Class Type</th>
-                                                <th>Class Floor</th>
+                                                <th>Course ID</th>
+                                                <th>Semester</th>
+                                                <th>Subject</th>
+                                                <th>Faculty</th>
+                                                <th>Constrain</th>
                                                 <th>Status</th>
                                                 <th>Action</th>
                                             </tr>

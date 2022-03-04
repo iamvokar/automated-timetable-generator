@@ -17,7 +17,7 @@ class ClassroomReportController extends Controller
         $classroom->id = $req->input("id");
         $classroom->classroom_no = $req->input("classroom_no");
         $classroom->classroom_type = $req->input("classroom_type");
-        $classroom->classroom_floor = $req->input("classroom_floor");
+        $classroom->semester = $req->input("semester");
         $classroom->status = $req->input("status");
         $classroom->save();
     }

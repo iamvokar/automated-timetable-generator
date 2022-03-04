@@ -11,7 +11,7 @@ class ClassroomController extends Controller
         $classroom = new Classroom;
         $classroom->classroom_no = $req->input("classroom_no");
         $classroom->classroom_type = $req->input("classroom_type");
-        $classroom->classroom_floor = $req->input("classroom_floor");
+        $classroom->semester = $req->input("semester");
         $classroom->status = $req->input("status");
         $classroom->save();
     }
@@ -25,7 +25,7 @@ class ClassroomController extends Controller
         $classroom = Classroom::find($id);
         $classroom->classroom_no = $req->input("classroom_no");
         $classroom->classroom_type = $req->input("classroom_type");
-        $classroom->classroom_floor = $req->input("classroom_floor");
+        $classroom->semester = $req->input("semester");
         $classroom->status = $req->input("status");
         $classroom->save();
     }

@@ -14,6 +14,7 @@ class FacultyController extends Controller
         $faculty->faculty_email = $req->input("faculty_email");
         $faculty->gender = $req->input("gender");
         $faculty->experience = $req->input("experience");
+        $faculty->semester = $req->input("semester");
         $faculty->status = $req->input("status");
         $faculty->save();
     }
@@ -30,6 +31,7 @@ class FacultyController extends Controller
         $faculty->faculty_email = $req->input("faculty_email");
         $faculty->gender = $req->input("gender");
         $faculty->experience = $req->input("experience");
+        $faculty->semester = $req->input("semester");
         $faculty->status = $req->input("status");
         $faculty->save();
     }

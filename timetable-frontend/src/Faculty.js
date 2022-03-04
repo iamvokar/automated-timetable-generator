@@ -30,8 +30,8 @@ function Faculty() {
     return (
         <div>
             <Router >
-            <SideBar/>
-          <Switch>
+           <Switch>
+            <Route exact path="/SideBar" component={SideBar}></Route>
               <Route exact path="/faculty" component={Main}></Route>
               <Route exact path="/fcourse" component={CourseSection}></Route>
               <Route exact path="/fsubject" component={SubjectSection}></Route>

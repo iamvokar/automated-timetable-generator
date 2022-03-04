@@ -3,6 +3,8 @@ import "./table.css"
 import {Button,Modal} from 'react-bootstrap'
 import {useState,useEffect} from 'react'
 import swal from 'sweetalert';
+import SideBar from './SideBar';
+import Semester from '../assets/array/Semester'
 
 function SubjectModal(props) {
     const [subject_id,setSubject_id] = useState("");
@@ -78,14 +80,14 @@ function SubjectModal(props) {
                         onChange={(e)=>setSubject_name(e.target.value)}
                       />
                     </div>
-                    <div class="field">
-                      <input
-                        type="text"
-                        name="course_name"
-                        placeholder="Semester"
-                        onChange={(e)=>setSemester(e.target.value)}
-                      />
-                    </div>
+                    <div class="d-flex w-75 ml-5 pl-5 pb-3" > 
+                  <label className='h6 pt-3 pr-1'>Semester:</label> 
+                  <select onChange={(e)=>setSemester(e.target.value)}>
+                   {Semester.map((item)=>
+                   <option defaultValue={item}>{item}</option>
+                   )}
+                  </select>
+                  </div>
                     <div className='login_radio'>
                       <lable className="title">Status :</lable>
                       <input
@@ -215,13 +217,14 @@ function SubjectModal(props) {
                         onChange={(e)=>setSubject_name(e.target.value)}
                       />
                     </div>
-                    <div class="field">
-                      <input
-                        type="text"
-                        defaultValue={data.semester}
-                        onChange={(e)=>setSemester(e.target.value)}
-                      />
-                    </div>
+                    <div class="d-flex w-75 ml-5 pl-5 pb-3" > 
+                  <label className='h6 pt-3 pr-1'>Semester:</label> 
+                  <select onChange={(e)=>setSemester(e.target.value)}>
+                   {Semester.map((item)=>
+                   <option defaultValue={item}>{item}</option>
+                   )}
+                  </select>
+                  </div>
                     <div className='login_radio'>
                       <lable className="title">Status :</lable>
                       <input
@@ -333,6 +336,7 @@ function SubjectSection() {
 
     return (
         <>
+        <SideBar/>
             <div className="container-fluid">
                 <div className="row ">
                     <div className="col-md-12 ">

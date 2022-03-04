@@ -1,5 +1,6 @@
 import React from 'react'
 import './Main.css';
+import SideBar from './SideBar'
 import img from '../assets/image/mca.png'
 import Cdata,{Cvalue} from '../assets/array/Cdata'
 import Cdata2 from '../assets/array/Cdata2'
@@ -69,6 +70,7 @@ function Main() {
     return (
         <>
             {/* main component start */}
+            <SideBar/>
             <section id="data" class="data section-bg">
                 <div className="container " id="main">
                     <div className="row d-flex justify-content-center">

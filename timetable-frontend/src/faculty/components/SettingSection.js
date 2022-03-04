@@ -2,6 +2,7 @@ import React from 'react'
 import "./table.css"
 import img from '../assets/image/admin.jpg'
 import {useState,useEffect} from 'react'
+import SideBar from './SideBar'
 
 function SettingSection() {
     const [data, setData] = useState([]);
@@ -20,6 +21,7 @@ function SettingSection() {
       
   return (
   <>
+  <SideBar/>
           <div className="container-fluid">
               <div className="col-md-12 ">
                   <div className="page_title ">

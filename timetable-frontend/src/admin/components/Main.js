@@ -63,11 +63,12 @@ function card3(val) {
 }
 function Main() {
      useEffect(()=>{
-       toast.success("welcome to admin dasboard");
+       toast.success("welcome to admin dashboard");
    },[])
     return (
         <>
             {/* main component start */}
+            <SideBar/>
             <section id="data" class="data section-bg">
                 <div className="container " id="main">
                     <div className="row d-flex justify-content-center">

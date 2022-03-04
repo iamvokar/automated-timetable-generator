@@ -1,7 +1,8 @@
 import React from 'react'
 import "./table.css"
 import {Button,Modal} from 'react-bootstrap'
-
+import SideBar from './SideBar';
+import {Link } from 'react-router-dom'
 function TimetableModal(props) {
     return (
       <Modal
@@ -87,6 +88,7 @@ function TimetableSection() {
     const [modalShow, setModalShow] = React.useState(false);
     return (
         <>
+        <SideBar/>
             <div className="container-fluid">
                 <div className="row ">
                     <div className="col-md-12 ">
@@ -146,7 +148,7 @@ function TimetableSection() {
                                                 <td>LAB</td>
                                                 <td>third</td>
                                                 <td>active</td>
-                                                <td className=''><button class='btn bg-success ml-3'> <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button><button class='btn bg-warning ml-3'> <i class="fa fa-eye" aria-hidden="true"></i></button><button class='btn bg-danger ml-3'><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+                                                <td className=''><button class='btn bg-success ml-3'> <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button><Link to="/result"><button class='btn bg-warning ml-3'> <i class="fa fa-eye" aria-hidden="true"></i></button></Link><button class='btn bg-danger ml-3'><i class="fa fa-trash" aria-hidden="true"></i></button></td>
                                             </tr>
                                             <tr>
                                                 <td>1</td>

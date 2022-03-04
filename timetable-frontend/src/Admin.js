@@ -27,8 +27,8 @@ function Admin() {
   return (
       <div>
       <Router>
-          <SideBar/>
               <Switch>
+                  <Route exact path="/SideBar" component={SideBar}></Route>
                   <Route exact path="/admin" component={Main}></Route>
                   <Route exact path="/course" component={CourseSection}></Route>
                   <Route exact path="/subject" component={SubjectSection}></Route>

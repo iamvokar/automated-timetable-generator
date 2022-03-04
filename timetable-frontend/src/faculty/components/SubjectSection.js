@@ -3,7 +3,7 @@ import "./table.css"
 import {Button,Modal} from 'react-bootstrap'
 import {useState,useEffect} from 'react'
 import swal from 'sweetalert';
-
+import SideBar from './SideBar'
 
   function ReportSubjectModal(props) {
     const [id, setID] = useState("");
@@ -194,6 +194,7 @@ function SubjectSection() {
 
     return (
         <>
+        <SideBar/>
             <div className="container-fluid">
                 <div className="row ">
                     <div className="col-md-12 ">

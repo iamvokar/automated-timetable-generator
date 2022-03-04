@@ -3,6 +3,7 @@ import "./table.css"
 import { Button, Modal } from 'react-bootstrap'
 import { useState, useEffect } from 'react'
 import swal from 'sweetalert';
+import SideBar from './SideBar'
 
 import { forwardRef } from 'react';
 
@@ -204,6 +205,7 @@ function CourseSection() {
     
     return (
         <>
+        <SideBar/>
             <div className="container-fluid">
                 <div className="row ">
                     <div className="col-md-12 ">

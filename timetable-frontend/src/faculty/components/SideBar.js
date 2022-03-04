@@ -23,6 +23,7 @@ function SideBar() {
     localStorage.clear();
     history.push("/");
   }
+
   
     return (
      <>

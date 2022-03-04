@@ -16,6 +16,7 @@ class ConstrainruleController extends Controller
         $constrainRule->period = $req->input("period");
         $constrainRule->save();
     }
+    
 
     function fetchConstrainrule() {
         return Constrainrule::all();
