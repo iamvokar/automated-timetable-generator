@@ -13,9 +13,12 @@ use App\Http\Controllers\SubjectReportController;
 use App\Http\Controllers\FacultyReportController;
 use App\Http\Controllers\ClassroomReportController;
 
+use App\Http\Controllers\SubjectinterestController;
 
 use App\Http\Controllers\ConstrainController;
 use App\Http\Controllers\ConstrainruleController;
+
+use App\Http\Controllers\TimetableController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -93,6 +96,8 @@ Route::get('/SubjectReportprefill/{id}',[SubjectReportController::class,'Subject
 Route::delete('/SubjectReportdelete/{id}',[SubjectReportController::class,'SubjectReportdelete']);
 Route::get('/searchReportSubject/{key}',[SubjectReportController::class,'searchReportSubject']);
 
+Route::post('/SubjectInterestupdate',[SubjectinterestController::class,'SubjectInterestupdate']);
+
 //report class
 Route::get('/ClassroomReportfetch',[ClassroomReportController::class,'ClassroomReportfetch']);
 Route::post('/ClassroomReportupdate',[ClassroomReportController::class,'ClassroomReportupdate']);
@@ -119,6 +124,16 @@ Route::post('/updateConstrainrule/{id}',[ConstrainruleController::class,'updateC
 Route::get('/prefillConstrainrule/{id}',[ConstrainruleController::class,'prefillConstrainrule']);
 Route::delete('/deleteConstrainrule/{id}',[ConstrainruleController::class,'deleteConstrainrule']);
 Route::get('/searchConstrainrule/{key}',[ConstrainruleController::class,'searchConstrainrule']);
+
+//timetable
+Route::get('/TimeTable/{id}',[TimetableController::class,'TimeTable']);
+Route::get('/Info/{id}',[TimetableController::class,'Info']);
+Route::post('/addTimetable',[TimetableController::class,'addTimetable']);
+Route::get('/fetchTimetable',[TimetableController::class,'fetchTimetable']);
+Route::post('/updateTimetable/{id}',[TimetableController::class,'updateTimetable']);
+Route::get('/prefillTimetable/{id}',[TimetableController::class,'prefillTimetable']);
+Route::delete('/deleteTimetable/{id}',[TimetableController::class,'deleteTimetable']);
+Route::get('/searchTimetable/{key}',[TimetableController::class,'searchTimetable']);
 
 
 

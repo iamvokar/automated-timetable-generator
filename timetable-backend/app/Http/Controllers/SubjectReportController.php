@@ -17,6 +17,7 @@ class SubjectReportController extends Controller
         $subject->id = $req->input("id");
         $subject->subject_id = $req->input("subject_id");
         $subject->subject_name = $req->input("subject_name");
+        $subject->priority = $req->input("priority");
         $subject->semester = $req->input("semester");
         $subject->status = $req->input("status");
         $subject->save();

@@ -11,7 +11,7 @@ class ConstrainruleController extends Controller
         $constrainRule->constrain_id = $req->input("constrain_id");
         $constrainRule->constrains_type = $req->input("constrains_type");
         $constrainRule->starting = $req->input("starting");
-        $constrainRule->ending = $req->input("ending");
+        $constrainRule->break = $req->input("break");
         $constrainRule->duration = $req->input("duration");
         $constrainRule->period = $req->input("period");
         $constrainRule->save();
@@ -28,7 +28,7 @@ class ConstrainruleController extends Controller
         $constrainRule->constrain_id = $req->input("constrain_id");
         $constrainRule->constrains_type = $req->input("constrains_type");
         $constrainRule->starting = $req->input("starting");
-        $constrainRule->ending = $req->input("ending");
+        $constrainRule->break = $req->input("break");
         $constrainRule->duration = $req->input("duration");
         $constrainRule->period = $req->input("period");
         $constrainRule->save();
@@ -38,7 +38,7 @@ class ConstrainruleController extends Controller
         return Constrainrule::find($id);
     }
 
-    function deleteConstrain($id){
+    function deleteConstrainrule($id){
         Constrainrule::find($id)->delete();
     }
 

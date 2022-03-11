@@ -10,15 +10,34 @@ class UserController extends Controller
 {
     function register(Request $req){
         
+        
+        $validator = $this->validate($req, [
+            'UserName' => 'unique:users',
+            'Email' => 'unique:users'
+
+        ]);
+
         $user = new User;
         $user->UserName=$req->input("UserName");
         $user->FirstName=$req->input("FirstName");
         $user->LastName=$req->input("LastName");
-        $user->role=$req->input("role");
+        //$user->role=$req->input("role");
         $user->Email=$req->input("Email");
         $user->Password=Hash::make($req->input("Password"));
-        $user->save(); 
-       
+        $user->save();
+            
+        if($validator)
+        {  
+            return response()->json([
+            'response' => $validator
+            ], 200);
+        }
+        else   
+        {
+            return response()->json([
+            'response' => $validator
+            ], 200);
+        }
 
       
     }

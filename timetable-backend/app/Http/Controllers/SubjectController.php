@@ -11,6 +11,7 @@ class SubjectController extends Controller
         $subject = new Subject;
         $subject->subject_id = $req->input("subject_id");
         $subject->subject_name = $req->input("subject_name");
+        $subject->priority = $req->input("priority");
         $subject->semester = $req->input("semester");
         $subject->status = $req->input("status");
         $subject->save();
@@ -25,6 +26,7 @@ class SubjectController extends Controller
         $subject = Subject::find($id);
         $subject->subject_id = $req->input("subject_id");
         $subject->subject_name = $req->input("subject_name");
+        $subject->priority = $req->input("priority");
         $subject->semester = $req->input("semester");
         $subject->status = $req->input("status");
         $subject->save();

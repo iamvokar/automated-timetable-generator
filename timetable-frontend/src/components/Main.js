@@ -1,62 +1,6 @@
 import React from 'react'
 import './Main.css';
-import img from '../assets/image/mca.png'
-import Cdata from '../assets/array/Cdata'
-import Cdata2 from '../assets/array/Cdata2'
-import Cdata3 from '../assets/array/Cdata3'
-function card1(val) {
-    return (
-        <div className={val.cols}>
-            <div className={val.boxs}>
-                <div className="pic"><i class={val.icon} aria-hidden="true"></i></div>
-                <div className="box-info">
-                    <h4 className="text-center">{val.value}</h4>
-                    <h3>{val.name}</h3>
-                </div>
-            </div>
-        </div>
-    );
-}
-function card2(val) {
-    return (
-        <div className={val.cols}>
-            <div className={val.boxs}>
-                <div className="pic"><i class={val.icon} aria-hidden="true"></i></div>
-                <div className="box-info">
-                    <h4 className="text-center">{val.value}</h4>
-                    <h3>{val.name}</h3>
-                </div>
-            </div>
-        </div>
-    );
-}
-function card3(val) {
-    return (
-        <div className="col-5">
-
-            <div class="card">
-                <a class="img-card" href="#">
-                    <img src={img} />
-                </a>
-                <div class="card-content">
-                    <h4 class="card-title">
-                        <a href="#">{val.title} 
-                        </a>
-                    </h4>
-                </div>
-                <div class="card-read-more py-4">
-                    <a href="#" class="">
-                    {val.view} 
-                    </a>
-                    <a href="#" class="" download>
-                    {val.download} 
-                    </a>
-                </div>
-
-            </div>
-        </div>
-    );
-}
+import Mca from './assets/mca.png'
 function Main() {
     return (
         <>
@@ -64,10 +8,53 @@ function Main() {
             <section id="data" class="data section-bg">
                 <div className="container " id="main">
                     <div className="row d-flex justify-content-center">
-                        {Cdata.map(card1)}
-                    </div>
-                    <div className="row d-flex pt-4  justify-content-center ">
-                        {Cdata2.map(card2)}
+                        <div className="col-lg-3  ">
+                            <div className="box d-flex align-items-center " >
+                                <div className="pic"><i class="fa fa-4x fa-graduation-cap text-danger" aria-hidden="true"></i></div>
+                                <div className="box-info">
+                                    <h4 className="text-center">2</h4>
+                                    <h3>Course</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-lg-3  ">
+                            <div className="box d-flex align-items-end" >
+                                <div className="pic"><i class="fa fa-4x fa-book text-primary" aria-hidden="true"></i></div>
+                                <div className="box-info">
+                                    <h4 className="text-center">142</h4>
+                                    <h3>Subject</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-lg-3   ">
+                            <div className="box d-flex align-items-end" >
+                                <div className="pic"><i class="fa fa-4x fa-users text-success" aria-hidden="true"></i></div>
+                                <div className="box-info">
+                                    <h4 className="text-center">12</h4>
+                                    <h3>faculty</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="row d-flex pt-4  justify-content-center ">
+                            <div className="col-lg-3  ml-auto">
+                                <div className="box d-flex align-items-start" >
+                                    <div className="pic"><i class="fa fa-4x fa-university text-info" aria-hidden="true"></i></div>
+                                    <div className="box-info">
+                                        <h4 className="text-center">40</h4>
+                                        <h3>ClassRoom</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-lg-3 mr-auto ">
+                                <div className="box d-flex align-items-start">
+                                    <div className="pic"><i class="fa fa-4x fa-clipboard text-warning" aria-hidden="true"></i></div>
+                                    <div className="box-info">
+                                        <h4 className="text-center">6</h4>
+                                        <h3>Semester</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -80,9 +67,53 @@ function Main() {
 
             <section>
                 <div className="container">
-                    <div className="row justify-content-center">
-                    {Cdata3.map(card3)}
-                    </div>
+                <div className="row justify-content-center">
+                <div className="col-5">
+
+                <div class ="card">
+                <a class ="img-card" href="#">
+                <img src={Mca} />
+                </a>
+                <div class ="card-content">
+                <h4 class ="card-title">
+                <a href="#">MCA
+                </a>
+                </h4>
+                </div>
+                <div class ="card-read-more">
+                <a href="#" class ="btn btn-link btn-block">
+                View
+                </a>
+                <a href="#" class ="btn btn-link btn-block" download>
+                Download
+                </a>
+                </div>
+
+                </div>
+                </div>
+                <div className="col-5">
+                  <div class ="card">
+                <a class ="img-card" href="#">
+                <img src={Mca} />
+                </a>
+                <div class ="card-content">
+                <h4 class ="card-title">
+                <a href="#">BCA
+                </a>
+                </h4>
+                </div>
+                <div class ="card-read-more">
+                <a href="#" class ="btn btn-link btn-block">
+                View
+                </a>
+                <a href="#" class ="btn btn-link btn-block" download>
+                Download
+                </a>
+                </div>
+
+                </div>
+                </div>
+                </div>
                 </div>
             </section>
 
